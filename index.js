@@ -1,8 +1,14 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require('path');
+const mongoose = require("mongoose")
 
 app.use(express.json());
+
+mongoose.connect(process.env.dbURL)
+  .then(console.log("DB Connected!!"))
+  .catch(error => console.log(error));
 
 app.use(function(req,res, next) {
     res.header("Access-Control-Allow-Origin", "*");
