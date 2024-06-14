@@ -30,7 +30,7 @@ router.post('/update_post', async (req, res)=>{
     }
 })
 
-delete('/delete_post', async (req, res) => {
+router.delete('/delete_post', async (req, res) => {
     try {
       await posts.delete_post(req.body.postId);
       res.send({ success: "post deleted" });
@@ -38,3 +38,5 @@ delete('/delete_post', async (req, res) => {
       res.status(401).send({ message: error.message });
     }
 })
+
+module.exports = router;

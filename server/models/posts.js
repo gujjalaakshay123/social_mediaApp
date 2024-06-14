@@ -39,12 +39,12 @@ async function create_post(post_id, postName, post_location, post_description) {
   }
 
   async function update_post(post_id, key, value){
-    const post = await Post.updateOne({'_id': id},{$set: { key: value }});
+    const post = await Post.updateOne({'_id': post_id},{$set: { key: value }});
     return post;
   }
 
   async function delete_post(post_id){
-    await Post.deleteOne({'_id': id});
+    await Post.deleteOne({'_id': post_id});
   }
 
   module.exports ={
