@@ -24,5 +24,5 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname,'/public','index.htm
 app.use('/user', userRoutes)
 app.use('/posts', postRoutes)
 app.use('/comments', commentRoutes)
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 6000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

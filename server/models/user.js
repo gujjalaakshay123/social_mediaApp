@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const bcrypt = require('bcryptjs')
 
 const schema_user = new mongoose.Schema(
     {
@@ -15,10 +16,12 @@ const User = mongoose.model('user',schema_user)
 async function register(username, password) {
     const user = await getUser(username);
     if(user) throw Error('Username already in use');
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
   
     const newUser = await User.create({
         userName: username,
-        userPwd: password
+        userPwd: hash
     });
   
     return newUser;
@@ -32,7 +35,8 @@ async function register(username, password) {
   async function login(username, password){
     const user = User.findOne({"userName": username})
     if(!user) throw Error('User Not Found')
-    if(password != user.userPwd) throw Error('Password incorrect please try again')
+    const valid = await bcrypt.compare(password, user.userPwd)
+    if(!valid) throw Error('Password incorrect please try again')
     return user;
   }
 
