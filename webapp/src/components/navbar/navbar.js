@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { Link, Outlet } from 'react-router-dom';
 
 
 const pages = ['Login', 'Register'];
@@ -43,7 +44,7 @@ function ResponsiveAppBar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
+          {/* <Typography
             variant="h6"
             noWrap
             component="a"
@@ -59,7 +60,7 @@ function ResponsiveAppBar() {
             }}
           >
             LOGO
-          </Typography>
+          </Typography> */}
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -168,6 +169,7 @@ function Navbar(){
 return(
   <div className="navbar">
       <ResponsiveAppBar></ResponsiveAppBar>
+      <Outlet></Outlet>
   </div>)
 };
 

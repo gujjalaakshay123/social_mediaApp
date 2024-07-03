@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.register{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: xx-large;
+}
+.main_app{
+  display: flex;
+  flex-direction: column;
+}
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: xx-large;
+}
