@@ -3,15 +3,31 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Link, useNaviga} from 'react-router-dom';
+import { Link, Navigate, useNaviga} from 'react-router-dom';
 
 
 function Login(){
   
-  const history = useHistory();
+  const [userName, setUserName] = useState('');
+  const [userPwd, setUserPwd] = useState('');
 
   const handleLogin = () => {
-    history.push('/about');
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ userName, userPwd })
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message) {
+          throw new Error(data.message);
+        }
+        setMessage('Login successful');
+        Navigate('/login')
+      })
+      .catch(error => setMessage(`Error: ${error.message}`));
   };
   return(
   <div className="login">
